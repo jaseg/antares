@@ -33,8 +33,8 @@ if LIB_ANTARES_CORE
    if LIB_PRINTK
 
       config LIB_PRINTK_TIMESTAMP
-      depends on LIB_TMGR && LIB_PRINTK
-      bool "Add a timestamp to printks"
+      depends on LIB_TMGR_UPTIME && LIB_PRINTK
+      bool "Add an uptime timestamp to printks"
 
       config LIB_PRINTK_PREFIX
       depends on LIB_PRINTK 
@@ -46,8 +46,12 @@ if LIB_ANTARES_CORE
 
    endif
 
-   config LIB_TMGR
-   bool "Simple cron and uptime counter [NEEDS REWORK]"
+   menuconfig LIB_TMGR
+   bool "Simple cron and uptime counter [NEEDS TESTING]"
+
+   if LIB_TMGR
+      source "antares/src/lib/ulc/kcnf"
+   endif
 
 endif
 
